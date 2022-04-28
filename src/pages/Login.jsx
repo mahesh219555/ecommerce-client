@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password }, dispatch)
-    navigate('/account');
+    navigate('/');
   }
   
   return (

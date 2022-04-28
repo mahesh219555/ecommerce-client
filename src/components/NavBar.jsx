@@ -21,9 +21,9 @@ const NavBar = () => {
         <Link to='/'>
           <Button type="Submit" variant="light" size="sm" >Home</Button>
         </Link>
-        <Link to='/products'>
+        {/* <Link to='/products'>
           <Button type="Submit" variant="light" size="sm" >Products</Button>
-        </Link>
+        </Link> */}
 
         {
         user ? 
