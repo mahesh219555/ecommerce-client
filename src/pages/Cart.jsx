@@ -5,7 +5,7 @@ const Cart = () => {
 
   return (
     <>
-    <Title order={2} style={{ marginBottom: '10px' }}>Your shopping cart has 1 items in it</Title>
+    <Title order={2} style={{ marginBottom: '10px' }}>Your shopping cart has 1 items</Title>
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>

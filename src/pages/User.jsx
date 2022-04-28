@@ -6,6 +6,7 @@ import Transactions from '../components/Transactions'
 
 const User = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const admin = JSON.parse(localStorage.getItem('user')).isAdmin;
   const name = JSON.parse(localStorage.getItem('user')).firstName;
   console.log(JSON.parse(localStorage.getItem('user')))

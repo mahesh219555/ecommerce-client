@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Header, Container, Group, Button } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
-import { ShoppingCart } from 'tabler-icons-react';
+import { BrandApple, ShoppingCart } from 'tabler-icons-react';
 
 const NavBar = () => {
   const { user } = useContext(AuthContext);
@@ -16,28 +16,33 @@ const NavBar = () => {
       alignItems: 'center', 
       height: '100%' }}
     >
-      MyStore
-      <Group spacing={5}>
+      <div style={{ width: '42px' }}>
         <Link to='/'>
-          <Button type="Submit" variant="light" size="sm" >Home</Button>
+          <BrandApple size={42} strokeWidth={1} color={'#7140bf'} />
         </Link>
+      </div>
+      <div className="textLogo">Apple eCommerce</div>
+      <Group spacing={5}>
+        <NavLink to='/products'>
+          <Button type="Submit" variant="subtle" color="gray" size="sm" >Products</Button>
+        </NavLink>
         {/* <Link to='/products'>
-          <Button type="Submit" variant="light" size="sm" >Products</Button>
+          <Button type="Submit" variant="subtle" size="sm" >Products</Button>
         </Link> */}
 
         {
         user ? 
-        <Link to='/account'>
-          <Button variant="light" size="sm">Account</Button>
-        </Link> : 
-        <Link to='/login'>
-          <Button variant="light" size="sm">Login</Button>
-        </Link>
+        <NavLink to='/account'>
+          <Button variant="subtle" color="gray" size="sm">Account</Button>
+        </NavLink> : 
+        <NavLink to='/login'>
+          <Button variant="subtle" color="gray" size="sm">Login</Button>
+        </NavLink>
         }
 
-        <Link to='/cart'>
-          <Button type="Submit" variant="light" size="sm" ><ShoppingCart size={16} color={'grey'}/> - 1</Button>
-        </Link>
+        <NavLink to='/cart'>
+          <Button type="Submit" variant="subtle" color="gray" size="sm" ><ShoppingCart size={16} color={'grey'}/> - 1</Button>
+        </NavLink>
       </Group>
 
     </Container>

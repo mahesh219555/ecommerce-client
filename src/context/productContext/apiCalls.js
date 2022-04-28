@@ -18,11 +18,7 @@ import {
 export const getProducts = async (dispatch) => {
   dispatch(getProductsStart())
   try {
-    const res = await axios.get('https://tranquil-brook-13044.herokuapp.com/api/products', {
-      headers: {
-        token: 'Bearer ' + JSON.stringify(localStorage.getItem('user')).accessToken,
-      }
-    })
+    const res = await axios.get('https://tranquil-brook-13044.herokuapp.com/api/products')
     dispatch(getProductsSuccess(res.data))
   } catch (error) {
     dispatch(getProductsFailure())
