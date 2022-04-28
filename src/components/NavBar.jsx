@@ -2,12 +2,13 @@ import React, { useContext } from 'react';
 import { Header, Container, Group, Button } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
+import { ShoppingCart } from 'tabler-icons-react';
 
 const NavBar = () => {
   const { user } = useContext(AuthContext);
 
   return (
-  <Header height={60} mb={50}>
+  <Header height={60} mb={40}>
     <Container 
     style={{ 
       display: 'flex', 
@@ -35,7 +36,7 @@ const NavBar = () => {
         }
 
         <Link to='/cart'>
-          <Button type="Submit" variant="light" size="sm" >Cart (0)</Button>
+          <Button type="Submit" variant="light" size="sm" ><ShoppingCart size={16} color={'grey'}/> - 0</Button>
         </Link>
       </Group>
 

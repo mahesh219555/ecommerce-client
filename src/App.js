@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
@@ -22,9 +22,9 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/products' element={<ProductsPage />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/account' element={<User />} />
+      <Route path='/account' element={user ? <User /> : <Login />} />
+      <Route path='/login' element={user ? <User /> : <Login />} />
+      <Route path='/register' element={user ? <Home /> : <Register />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
