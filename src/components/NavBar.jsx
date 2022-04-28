@@ -36,7 +36,7 @@ const NavBar = () => {
         }
 
         <Link to='/cart'>
-          <Button type="Submit" variant="light" size="sm" ><ShoppingCart size={16} color={'grey'}/> - 0</Button>
+          <Button type="Submit" variant="light" size="sm" ><ShoppingCart size={16} color={'grey'}/> - 1</Button>
         </Link>
       </Group>
 
