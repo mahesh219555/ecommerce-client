@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { TextInput, Table, ScrollArea, Button, Avatar } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
-import { getUsers } from '../../context/userContext/apiCalls';
+import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 
 const UserList = () => {
@@ -13,6 +13,7 @@ const UserList = () => {
   }, [dispatch]);
 
   const handleDelete = (id) => {
+    deleteUser(id, dispatch);
   }
 
   return (

@@ -10,3 +10,16 @@ export const getUsersSuccess = (users) => ({
 export const getUsersFailure = () => ({
 	type: 'GET_USERS_FAILURE',
 });
+
+export const deleteUserStart = () => ({
+	type: 'DELETE_USER_START',
+});
+
+export const deleteUserSuccess = (id) => ({
+	type: 'DELETE_USER_SUCCESS',
+	payload: id
+});
+
+export const deleteUserFailure = () => ({
+	type: 'DELETE_USER_FAILURE',
+});

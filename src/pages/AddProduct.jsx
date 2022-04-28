@@ -25,6 +25,7 @@ const AddProduct = () => {
     {
       admin ? 
       <>
+      <Title order={2}>Add A New Product</Title>
       <TextInput
       label="Image"
       placeholder='http://website.com/image.jpg'

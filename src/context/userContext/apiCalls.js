@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { getUsersFailure, getUsersStart, getUsersSuccess } from './UserActions';
+import { 
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+  getUsersFailure, 
+  getUsersStart, 
+  getUsersSuccess 
+} from './UserActions';
 
 // GET USERS
 export const getUsers = async (dispatch) => {
@@ -16,4 +23,17 @@ export const getUsers = async (dispatch) => {
   }
 }
 
-// DELETE USERS (IN PROGRESS)
+// DELETE USERS
+export const deleteUser = async (id, dispatch) => {
+  dispatch(deleteUserStart())
+  try {
+    await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/users/delete/${id}`, {
+      headers: {
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+      }
+    })
+    dispatch(deleteUserSuccess(id))
+  } catch (error) {
+    dispatch(deleteUserFailure())
+  }
+}
