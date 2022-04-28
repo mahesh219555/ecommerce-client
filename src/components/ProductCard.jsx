@@ -3,7 +3,7 @@ import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 
 const ProductCard = () => {
   return (
-  <div style={{ margin: 'auto' }}>
+  <div style={{ width: '100%', margin: 'auto' }}>
     <Card shadow="sm" p="lg">
       <Card.Section>
         <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_US?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1632948875000" height={160} alt="Norway" />
