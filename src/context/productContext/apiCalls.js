@@ -46,7 +46,7 @@ export const updateProduct = async (product, dispatch) => {
   try {
     const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/products/update`, product, {
       headers: {
-        token: 'Bearer ' + JSON.stringify(localStorage.getItem('user')).accessToken,
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
     })
     dispatch(updateProductSuccess(res.data))

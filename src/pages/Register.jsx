@@ -36,7 +36,7 @@ const Register = () => {
   placeholder="Enter a username"
   label="Username"
   id="username"
-  size="lg"
+  size="md"
   icon={<User size={14} />}
   onChange={(e) => setUsername(e.target.value)}
   required
@@ -45,7 +45,7 @@ const Register = () => {
   placeholder="Enter your email"
   label="Email"
   id="email"
-  size="lg"
+  size="md"
   icon={<At size={14} />}
   onChange={(e) => setEmail(e.target.value)}
   required
@@ -54,7 +54,7 @@ const Register = () => {
   placeholder="Enter your first name"
   label="First Name"
   id="firstName"
-  size="lg"
+  size="md"
   onChange={(e) => setFirstName(e.target.value)}
   required
   />
@@ -62,7 +62,7 @@ const Register = () => {
   placeholder="Enter your last name"
   label="Last Name"
   id="lastName"
-  size="lg"
+  size="md"
   onChange={(e) => setLastName(e.target.value)}
   required
   />
@@ -70,7 +70,7 @@ const Register = () => {
   placeholder="Create a password"
   label="Password"
   id="password"
-  size="lg"
+  size="md"
   icon={<Eye size={14} />}
   type="password"
   onChange={(e) => setPassword(e.target.value)}
@@ -78,7 +78,7 @@ const Register = () => {
   />
   
   <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-  <Button type="Submit" variant="light" size="md" onClick={handleFinish}>Register</Button>
+  <Button type="Submit" variant="light" size="sm" onClick={handleFinish}>Register</Button>
   </div>
 
   </>

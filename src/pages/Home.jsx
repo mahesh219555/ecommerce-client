@@ -21,7 +21,7 @@ const Home = () => {
     {
       products.map((product) => {
         return (
-          <div style={{ width: '100%', margin: 'auto' }}>
+          <div style={{ width: '100%', margin: 'auto' }} key={product._id}>
           <Card shadow="sm" p="lg">
           <Card.Section>
           <Image src={product.image} height={160} alt="Norway" />
