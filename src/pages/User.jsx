@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
-import { Button, Title } from '@mantine/core';
-import Transactions from '../components/Transactions'
+import { Button, Tabs, Title } from '@mantine/core';
+import Transactions from '../components/Transactions';
+import ProductList from '../components/Admin/ProductList';
+import TransactionsList from '../components/Admin/TransactionsList';
+import UserList from '../components/Admin/UserList';
 
 const User = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
-  const { user } = useContext(AuthContext);
   const admin = JSON.parse(localStorage.getItem('user')).isAdmin;
   const name = JSON.parse(localStorage.getItem('user')).firstName;
   console.log(JSON.parse(localStorage.getItem('user')))
@@ -19,8 +21,15 @@ const User = () => {
     {
     admin ?
     <>
-    <Title order={2} style={{ marginBottom: '10px' }}>Admin Dashboard</Title>
-    <Button type="Submit" variant="light" color="green" size="sm">Add New Product</Button>
+    <div style={{ marginBottom: '20px' }}>
+      <Title order={2} style={{ marginBottom: '10px' }}>Admin Dashboard</Title>
+      <Button type="Submit" variant="light" color="green" size="sm">Add New Product</Button>
+    </div>
+    <Tabs variant="pills">
+      <Tabs.Tab label="Products"><ProductList /></Tabs.Tab>
+      <Tabs.Tab label="Transactions"><TransactionsList /></Tabs.Tab>
+      <Tabs.Tab label="Users"><UserList /></Tabs.Tab>
+    </Tabs>
     </> :
     <Transactions />
     }

@@ -21,7 +21,7 @@ const NavBar = () => {
           <BrandApple size={42} strokeWidth={1} color={'#7140bf'} />
         </Link>
       </div>
-      <div className="textLogo">Apple eCommerce</div>
+      {/* <div className="textLogo">Apple eCommerce</div> */}
       <Group spacing={5}>
         <NavLink to='/products'>
           <Button type="Submit" variant="subtle" color="gray" size="sm" >Products</Button>

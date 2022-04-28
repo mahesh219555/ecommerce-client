@@ -8,7 +8,7 @@ const ProductReducer = (state, action) => {
       };
 	  case "GET_PRODUCTS_SUCCESS":
       return {
-        proDUCTs: action.payload,
+        products: action.payload,
         isFetching: false,
         error: false
       };

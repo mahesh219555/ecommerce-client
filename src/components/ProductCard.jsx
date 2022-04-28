@@ -12,7 +12,7 @@ const ProductCard = (props) => {
       <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
         <Text weight={500}>{props.title}</Text>
         <Badge color="green" variant="light">
-          {props.price}
+          ${props.price}
         </Badge>
       </Group>
       
