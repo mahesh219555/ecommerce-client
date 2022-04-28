@@ -26,12 +26,12 @@ export const getProducts = async (dispatch) => {
 }
 
 // CREATE PRODUCT
-export const createProject = async (product, dispatch) => {
+export const createProduct = async (product, dispatch) => {
   dispatch(createProductStart())
   try {
     const res = await axios.post(`https://tranquil-brook-13044.herokuapp.com/api/products/create`, product, {
       headers: {
-        token: 'Bearer ' + JSON.stringify(localStorage.getItem('user')).accessToken,
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
     })
     dispatch(createProductSuccess(res.data))
@@ -61,7 +61,7 @@ export const deleteProduct = async (id, dispatch) => {
   try {
     await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/products/delete/${id}`, {
       headers: {
-        token: 'Bearer ' + JSON.stringify(localStorage.getItem('user')).accessToken,
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
     })
     dispatch(deleteProductSuccess(id))

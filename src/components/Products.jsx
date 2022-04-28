@@ -24,7 +24,7 @@ const Products = () => {
       style={{ marginTop: '20px', marginBottom: '20px' }}
       icon={<Search size={24} color='black' />}
     />
-    <Title order={2} style={{marginBottom: '10px'}}>Sort Products</Title>
+    <Title order={2} style={{marginBottom: '10px'}}>Sort Products By</Title>
     <SimpleGrid cols={4} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },

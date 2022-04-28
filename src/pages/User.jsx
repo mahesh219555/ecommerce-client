@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
 import { Button, Tabs, Title } from '@mantine/core';
@@ -23,7 +24,9 @@ const User = () => {
     <>
     <div style={{ marginBottom: '20px' }}>
       <Title order={2} style={{ marginBottom: '10px' }}>Admin Dashboard</Title>
-      <Button type="Submit" variant="light" color="green" size="sm">Add New Product</Button>
+      <Link to='/account/add-product'>
+        <Button type="Submit" variant="light" color="green" size="sm">Add New Product</Button>
+      </Link>
     </div>
     <Tabs variant="pills">
       <Tabs.Tab label="Products"><ProductList /></Tabs.Tab>

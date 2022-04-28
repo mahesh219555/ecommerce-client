@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import ProductsPage from './pages/Products';
 import User from './pages/User';
 import Cart from './pages/Cart';
+import AddProduct from './pages/AddProduct';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/products' element={<ProductsPage />} />
       <Route path='/account' element={user ? <User /> : <Login />} />
+      <Route path='/account/add-product' element={user ? <AddProduct /> : <Home />} />
       <Route path='/login' element={user ? <User /> : <Login />} />
       <Route path='/register' element={user ? <Home /> : <Register />} />
       <Route path='/cart' element={<Cart />} />
