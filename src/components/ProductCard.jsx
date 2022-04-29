@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 
 const ProductCard = (props) => {
+  const MAX_LENGTH = 30;
   return (
   <div style={{ width: '100%', margin: 'auto' }}>
     <Card shadow="sm" p="lg">
@@ -10,7 +11,7 @@ const ProductCard = (props) => {
       </Card.Section>
       
       <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
-        <Text weight={500}>{props.title}</Text>
+        <Text size={17} weight={400}>{props.title.substring(0, MAX_LENGTH)}...</Text>
         <Badge color="green" variant="light">
           ${props.price}
         </Badge>

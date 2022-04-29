@@ -6,6 +6,7 @@ import { SimpleGrid, Button, Card, Image, Text, Badge, Group } from '@mantine/co
 
 const Home = () => {
   const { products, dispatch } = useContext(ProductContext);
+  const MAX_LENGTH = 30;
   
   useEffect(() => {
     getProducts(dispatch);
@@ -16,7 +17,7 @@ const Home = () => {
     <SimpleGrid cols={4} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },
-      { maxWidth: 'sm', cols: 2 },
+      { maxWidth: 'sm', cols: 1 },
     ]}>
     {
       products.map((product) => {
@@ -28,7 +29,7 @@ const Home = () => {
           </Card.Section>
 
           <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
-          <Text weight={500}>{product.title}</Text>
+          <Text size={17} weight={400}>{product.title.substring(0, MAX_LENGTH)}...</Text>
           <Badge color="green" variant="light">
           ${product.price}
           </Badge>

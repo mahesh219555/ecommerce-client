@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
-import { TextInput, SimpleGrid, Title } from '@mantine/core';
+import { TextInput, SimpleGrid, Title, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../context/productContext/ProductContext';
 import { getProducts } from '../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
@@ -8,6 +8,8 @@ import { Search } from 'tabler-icons-react';
 const Products = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
   
   useEffect(() => {
     getProducts(dispatch);
@@ -24,8 +26,22 @@ const Products = () => {
       style={{ marginTop: '20px', marginBottom: '20px' }}
       icon={<Search size={24} color='black' />}
     />
-    <Title order={2} style={{marginBottom: '10px'}}>Sort Products By</Title>
-    <SimpleGrid cols={4} breakpoints={[
+    <NativeSelect
+      size="md"
+      data={['Accessories', 'Desktops', 'Laptops', 'iPhones', 'iPads', 'Watches']}
+      onChange={(e) => setCategory(e.target.value)}
+      value={category}
+      placeholder="Select one"
+      label="Filter products by category"
+    />
+    <Title order={2} style={{marginBottom: '10px', marginTop: '10px' }}>Sort Products By</Title>
+    <NativeSelect
+      size="md"
+      data={['Lowest Price', 'Highest Price']}
+      placeholder="Select one"
+      label="Select a price range to sort by"
+    />
+    <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },
       { maxWidth: 'sm', cols: 2 },
@@ -33,13 +49,21 @@ const Products = () => {
       {
         products
         ?.filter((product) => {
-          if(search === ''){
-            return true
-          } else if(product.title.toLowerCase().includes(search.toLowerCase())){
+          if(category === '' && search === ''){
             return true
           }
-          return false
+          if(category !== '' && search !== '' && product.category.includes(category) && product.title.toLowerCase().includes(search.toLowerCase())){
+            return true
+          }
+          if(category !== '' && product.category.includes(category)){
+            return true
+          }
+          if(search !== '' && product.title.toLowerCase().includes(search.toLowerCase())){
+            return true
+          }
         })
+        // .sort((product) => {
+        // })
         .map((product) => {
           return (
             <ProductCard

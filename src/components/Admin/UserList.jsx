@@ -3,6 +3,7 @@ import { TextInput, Table, ScrollArea, Button, Avatar } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
 import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
 import { Search } from 'tabler-icons-react';
+import formatDistance from 'date-fns/formatDistance';
 
 const UserList = () => {
   const { users, dispatch } = useContext(UserContext);
@@ -50,13 +51,18 @@ const UserList = () => {
           return false
         })
         .map((user) => {
+          const dateStr = user.updatedAt;
+          const str = formatDistance(
+            new Date(dateStr),
+            new Date()
+          );
           return (
             <tr key={user._id}>
             <td>
               <Avatar src={user.profilePic} alt={user.username} radius="xl" size={40} />
             </td>
             <td>{user.createdAt}</td>
-            <td>{user.updatedAt}</td>
+            <td>{str} ago</td>
             <td>{user.username}</td>
             <td>{user.firstName} {user.lastName}</td>
             <td>
@@ -74,4 +80,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default UserList;

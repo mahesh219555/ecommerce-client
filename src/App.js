@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { Container } from '@mantine/core';
@@ -30,6 +31,7 @@ function App() {
       <Route path='/cart' element={<Cart />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
+    <Footer />
     </Container>
     </BrowserRouter>
     </>

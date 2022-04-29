@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { TextInput, Table, ScrollArea, Button, Image } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Image, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../../context/productContext/ProductContext';
 import { deleteProduct, getProducts } from '../../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
@@ -8,6 +8,8 @@ import formatDistance from 'date-fns/formatDistance';
 const ProductList = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     getProducts(dispatch);
@@ -27,6 +29,15 @@ const ProductList = () => {
       style={{ marginTop: '20px', marginBottom: '20px' }}
       icon={<Search size={24} color='black' />}
     />
+    <NativeSelect
+      size="md"
+      data={['Accessories', 'Desktops', 'Laptops', 'iPhones', 'iPads', 'Watches']}
+      onChange={(e) => setCategory(e.target.value)}
+      value={category}
+      placeholder="Select one"
+      label="Filter products by category"
+      style={{ marginBottom: '10px' }}
+    />
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -42,12 +53,18 @@ const ProductList = () => {
         {
         products
         ?.filter((product) => {
-          if(search === ''){
-            return true
-          } else if(product.title.toLowerCase().includes(search.toLowerCase())){
+          if(category === '' && search === ''){
             return true
           }
-          return false
+          if(category !== '' && search !== '' && product.category.includes(category) && product.title.toLowerCase().includes(search.toLowerCase())){
+            return true
+          }
+          if(category !== '' && product.category.includes(category)){
+            return true
+          }
+          if(search !== '' && product.title.toLowerCase().includes(search.toLowerCase())){
+            return true
+          }
         })
         .map((product) => {
           const dateStr = product.createdAt;
