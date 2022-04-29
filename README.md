@@ -10,3 +10,7 @@
 ## ✨ Live Site
 
 Coming soon
+
+## Screenshots
+
+![admin](https://raw.githubusercontent.com/austindflatt/ecommerce-client/main/AdminScreenshot.png)
