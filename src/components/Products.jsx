@@ -8,7 +8,6 @@ import { Search } from 'tabler-icons-react';
 const Products = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
-  const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
   
   useEffect(() => {
@@ -61,6 +60,7 @@ const Products = () => {
           if(search !== '' && product.title.toLowerCase().includes(search.toLowerCase())){
             return true
           }
+          return false
         })
         // .sort((product) => {
         // })
@@ -72,6 +72,8 @@ const Products = () => {
             title={product.title}
             price={product.price}
             description={product.description}
+            category={product.category}
+            id={product._id}
             />
           )
         })
@@ -81,4 +83,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Products;

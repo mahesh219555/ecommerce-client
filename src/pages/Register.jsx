@@ -20,7 +20,6 @@ const Register = () => {
       firstName: firstName,
       lastName: lastName,
       username: username,
-      profilePic: profilePic,
       password: password
     }
     try {
@@ -34,14 +33,6 @@ const Register = () => {
   return (
   <>
   <Title order={1} style={{ marginBottom: '10px' }}>Register Account</Title>
-  <TextInput
-  placeholder="Link to image file"
-  label="Profile Picture"
-  id="profilePic"
-  size="md"
-  onChange={(e) => setProfilePic(e.target.value)}
-  required
-  />
   <TextInput
   placeholder="Enter a username"
   label="Username"
