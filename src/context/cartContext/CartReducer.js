@@ -8,8 +8,13 @@ const CartReducer = (state, action) => {
 	  case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((c) => c._id !== action.payload._id),
+        cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cart: state.cart.filter((c) => c._id !== action.payload._id),
+      }
     default:
       return { ...state }
   }

@@ -41,7 +41,7 @@ const Cart = () => {
                   />
                 </td>
                 <td>{product.title}</td>
-                <td>{product.price}</td>
+                <td>${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                 <td>{product.qty}</td>
                 <td>
                   <Button type="Submit" variant="light" color="red" size="sm" onClick={() => dispatch({ type: "REMOVE_FROM_CART", payload: product, })}>Remove</Button>
@@ -55,7 +55,7 @@ const Cart = () => {
       </ScrollArea>
       <Text size="lg" style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Text>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }}>Empty Cart</Button>
+        <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }} onClick={() => dispatch({ type: "EMPTY_CART", payload: null, })}>Empty Cart</Button>
         <Button type="Submit" variant="light" size="sm" color="green">Proceed to Checkout</Button>
       </div>
     </>
