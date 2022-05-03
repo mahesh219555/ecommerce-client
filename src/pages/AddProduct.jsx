@@ -15,7 +15,7 @@ const AddProduct = () => {
     setProduct({ ...product, [e.target.id]:value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     createProduct(product, dispatch);
     navigate('/');
   }

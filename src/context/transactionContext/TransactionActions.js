@@ -23,3 +23,16 @@ export const createTransactionSuccess = (transaction) => ({
 export const createTransactionFailure = () => ({
 	type: 'CREATE_TRANSACTION_FAILURE',
 });
+
+export const deleteTransactionStart = () => ({
+	type: 'DELETE_TRANSACTION_START',
+});
+
+export const deleteTransactionSuccess = (id) => ({
+	type: 'DELETE_TRANSACTION_SUCCESS',
+	payload: id
+});
+
+export const deleteTransactionFailure = () => ({
+	type: 'DELETE_TRANSACTION_FAILURE',
+});

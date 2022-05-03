@@ -36,6 +36,24 @@ const TransactionReducer = (state, action) => {
         isFetching: false,
         error: true
       };
+    case "DELETE_TRANSACTION_START":
+      return {
+        ...state,
+        isFetching: true,
+        error: false
+      };
+    case "DELETE_TRANSACTION_SUCCESS":
+      return {
+        transactions: state.transactions.filter((transaction) => transaction._id !== action.payload),
+        isFetching: false,
+        error: false
+      };
+    case "DELETE_TRANSACTION_FAILURE":
+      return {
+        ...state,
+        isFetching: false,
+        error: true
+      };
     default:
       return { ...state }
   }

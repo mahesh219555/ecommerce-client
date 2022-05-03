@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Button } from '@mantine/core';
+import { Title, Text, Button } from '@mantine/core';
 import ProductsHome from '../components/ProductsHome';
 
 const Home = () => {
 
   return (
     <>
+    <Title order={3} style={{ marginBottom: '10px' }}>Apple E-Commerce</Title>
+    <Text size="md">The Best Prices.</Text>
+    
+    <Title order={3} style={{ marginTop: '10px' }}>Recent Products Added</Title>
     <ProductsHome />
 
     <Link to='/products'>

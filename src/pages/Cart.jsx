@@ -33,10 +33,14 @@ const Cart = () => {
     console.log(transaction)
     createTransaction(transaction, dispatch);
     dispatch({ type: "EMPTY_CART", payload: cart, })
-    navigate('/account');
+    navigate('/order-accepted');
   }
 
   return (
+    <>
+    {cart.length <= 0 ?  
+    <Title order={2} style={{ marginBottom: '10px' }}>Your shopping cart is empty</Title>
+    :
     <>
     <Title order={2} style={{ marginBottom: '10px' }}>Your shopping cart has {cart.length} items</Title>
     <ScrollArea>
@@ -67,10 +71,10 @@ const Cart = () => {
                 <td>{product.title}</td>
                 <td>${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                 <td>
-                <NativeSelect
-                  data={['1', '2', '3', '4', '5']}
-                  value={product.qty}
-                  onChange={(e) =>
+                  <NativeSelect
+                    data={['1', '2', '3', '4', '5']}
+                    value={product.qty}
+                    onChange={(e) =>
                     dispatch({
                       type: "CHANGE_CART_QTY",
                       payload: {
@@ -78,9 +82,9 @@ const Cart = () => {
                         qty: e.target.value,
                       },
                     })
-                  }
-                  required
-                />
+                    }
+                    required
+                  />
                 </td>
                 <td>
                   <Button type="Submit" variant="light" color="red" size="sm" onClick={() => dispatch({ type: "REMOVE_FROM_CART", payload: product, })}>Remove</Button>
@@ -91,12 +95,14 @@ const Cart = () => {
           }
         </tbody>
       </Table>
-      </ScrollArea>
-      <Title order={2} style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Title>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }} onClick={() => dispatch({ type: "EMPTY_CART", payload: cart, })}>Empty Cart</Button>
-        <Button type="Submit" variant="light" size="sm" color="green" onClick={handleSubmit}>Checkout</Button>
-      </div>
+    </ScrollArea>
+    <Title order={2} style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Title>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+      <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }} onClick={() => dispatch({ type: "EMPTY_CART", payload: cart, })}>Empty Cart</Button>
+      <Button type="Submit" variant="light" size="sm" color="green" onClick={handleSubmit}>Checkout</Button>
+    </div>
+    </>
+    }
     </>
   )
 }

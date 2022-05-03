@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TextInput, Table, ScrollArea, Button } from '@mantine/core';
 import { TransactionContext } from '../../context/transactionContext/TransactionContext';
-import { getTransactions } from '../../context/transactionContext/apiCalls';
+import { deleteTransaction, getTransactions } from '../../context/transactionContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 
 const TransactionsList = () => {
@@ -11,6 +11,10 @@ const TransactionsList = () => {
   useEffect(() => {
     getTransactions(dispatch);
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteTransaction(id, dispatch);
+  }
 
   return (
     <>
@@ -50,7 +54,7 @@ const TransactionsList = () => {
             <td>{transaction.user}</td>
             <td>{transaction.createdAt}</td>
             <td>
-              <Button type="Submit" variant="light" color="red" size="sm">Delete</Button>
+              <Button type="Submit" variant="light" color="red" size="sm" onClick={() => handleDelete(transaction._id)}>Delete</Button>
             </td>
           </tr>
           )

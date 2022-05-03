@@ -12,6 +12,7 @@ import ProductsPage from './pages/Products';
 import User from './pages/User';
 import Cart from './pages/Cart';
 import AddProduct from './pages/AddProduct';
+import TransactionSuccess from './pages/TransactionSuccess';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -22,13 +23,14 @@ function App() {
     <Container>
     <NavBar />
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/products' element={<ProductsPage />} />
+      <Route path='/' element={user ? <Home /> : <Login />} />
+      <Route path='/products' element={user ? <ProductsPage /> : <Login />} />
       <Route path='/account' element={user ? <User /> : <Login />} />
+      <Route path='/order-accepted' element={user ? <TransactionSuccess /> : <Login />} />
       <Route path='/account/add-product' element={user ? <AddProduct /> : <Home />} />
       <Route path='/login' element={user ? <User /> : <Login />} />
       <Route path='/register' element={user ? <Home /> : <Register />} />
-      <Route path='/cart' element={<Cart />} />
+      <Route path='/cart' element={user ? <Cart /> : <Login />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     <Footer />

@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { 
+  deleteTransactionStart,
+  deleteTransactionSuccess,
+  deleteTransactionFailure,
   createTransactionStart,
   createTransactionSuccess,
   createTransactionFailure,
@@ -35,5 +38,20 @@ export const createTransaction = async (transaction, dispatch) => {
     dispatch(createTransactionSuccess(res.data))
   } catch (error) {
     dispatch(createTransactionFailure())
+  }
+}
+
+// DELETE TRANSACTION
+export const deleteTransaction = async (id, dispatch) => {
+  dispatch(deleteTransactionStart())
+  try {
+    await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/transactions/delete/${id}`, {
+      headers: {
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+      }
+    })
+    dispatch(deleteTransactionSuccess(id))
+  } catch (error) {
+    dispatch(deleteTransactionFailure())
   }
 }

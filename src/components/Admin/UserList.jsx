@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { TextInput, Table, ScrollArea, Button, Avatar } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Avatar, SimpleGrid } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
 import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
 import { Search } from 'tabler-icons-react';
@@ -24,9 +24,27 @@ const UserList = () => {
       placeholder="Search by username"
       onChange={(e) => setSearch(e.target.value)}
       rightSectionWidth={42}
-      style={{ marginTop: '20px', marginBottom: '20px' }}
+      style={{ marginTop: '20px', marginBottom: '10px' }}
       icon={<Search size={24} color='black' />}
     />
+    <SimpleGrid cols={2}>
+      <TextInput
+        size="md"
+        placeholder="Search by First Name"
+        onChange={(e) => setSearch(e.target.value)}
+        rightSectionWidth={42}
+        style={{ marginTop: '20px', marginBottom: '20px' }}
+        icon={<Search size={24} color='black' />}
+      />
+      <TextInput
+        size="md"
+        placeholder="Search by Last Name"
+        onChange={(e) => setSearch(e.target.value)}
+        rightSectionWidth={42}
+        style={{ marginTop: '20px', marginBottom: '20px' }}
+        icon={<Search size={24} color='black' />}
+      />
+    </SimpleGrid>
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>

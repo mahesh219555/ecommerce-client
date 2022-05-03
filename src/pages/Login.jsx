@@ -45,7 +45,7 @@ const Login = () => {
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
       <Button type="Submit" variant="light" size="sm" onClick={handleLogin} disabled={isFetching} style={{ marginRight: '5px' }}>Login</Button>
       <Link to='/register'>
-        <Button type="Submit" variant="light" size="sm">Not A User?</Button>
+        <Button type="Submit" variant="light" size="sm" color="violet">Not A User?</Button>
       </Link>
     </div>
   </form>

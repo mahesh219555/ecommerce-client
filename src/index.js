@@ -10,15 +10,15 @@ import { CartContextProvider } from './context/cartContext/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthContextProvider>
-      <ProductContextProvider>
-        <UserContextProvider>
-          <TransactionContextProvider>
-            <CartContextProvider>
-              <App />
-            </CartContextProvider>
-          </TransactionContextProvider>
-        </UserContextProvider>
-      </ProductContextProvider>
-    </AuthContextProvider>
+  <AuthContextProvider>
+    <ProductContextProvider>
+      <UserContextProvider>
+        <TransactionContextProvider>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </TransactionContextProvider>
+      </UserContextProvider>
+    </ProductContextProvider>
+  </AuthContextProvider>
 );
