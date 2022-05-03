@@ -18,6 +18,24 @@ const TransactionReducer = (state, action) => {
         isFetching: false,
         error: true
       };
+    case "CREATE_TRANSACTION_START":
+      return {
+        ...state,
+        isFetching: true,
+        error: false
+      };
+    case "CREATE_TRANSACTION_SUCCESS":
+      return {
+        transactions: [...state.transactions, action.payload],
+        isFetching: false,
+        error: false
+      };
+    case "CREATE_TRANSACTION_FAILURE":
+      return {
+        ...state,
+        isFetching: false,
+        error: true
+      };
     default:
       return { ...state }
   }

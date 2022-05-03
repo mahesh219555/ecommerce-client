@@ -1,16 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Title, NativeSelect, Table, ScrollArea, Button, Image } from '@mantine/core';
 import { CartState } from '../context/cartContext/CartContext';
+import { createTransaction } from '../context/transactionContext/apiCalls';
+import { AuthContext } from '../context/authContext/AuthContext';
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const { user } = useContext(AuthContext);
   const { state: { cart }, dispatch } = CartState();
   const [total, setTotal] = useState();
+  const [transaction, setTransaction] = useState([]);
+  const navigate = useNavigate();
   
   useEffect(() => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
+    setTransaction({ user: user._id, cart: cartItems, total: cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0) })
+    // eslint-disable-next-line
   }, [cart]);
+
+  const cartItems = cart.map((item) => {
+    return item.id
+  })
+
+  const handleSubmit = () => {
+    console.log(transaction)
+    createTransaction(transaction, dispatch);
+    dispatch({ type: "EMPTY_CART", payload: cart, })
+    navigate('/account');
+  }
 
   return (
     <>
@@ -70,7 +89,8 @@ const Cart = () => {
       </ScrollArea>
       <Title order={2} style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Title>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button type="Submit" variant="light" size="sm" color="green">Proceed to Checkout</Button>
+        <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }} onClick={() => dispatch({ type: "EMPTY_CART", payload: cart, })}>Empty Cart</Button>
+        <Button type="Submit" variant="light" size="sm" color="green" onClick={handleSubmit}>Checkout</Button>
       </div>
     </>
   )

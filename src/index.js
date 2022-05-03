@@ -10,7 +10,6 @@ import { CartContextProvider } from './context/cartContext/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <AuthContextProvider>
       <ProductContextProvider>
         <UserContextProvider>
@@ -22,5 +21,4 @@ root.render(
         </UserContextProvider>
       </ProductContextProvider>
     </AuthContextProvider>
-  </React.StrictMode>
 );

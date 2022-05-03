@@ -26,7 +26,7 @@ const TransactionsList = () => {
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
           <tr>
-            <th>Products ID Ordered</th>
+            <th>Order ID</th>
             <th>User ID</th>
             <th>Purchased On</th>
             <th>Delete Transaction</th>
@@ -46,7 +46,7 @@ const TransactionsList = () => {
         .map((transaction) => {
           return (
             <tr key={transaction._id}>
-            <td>{transaction.cart}</td>
+            <td>{transaction._id}</td>
             <td>{transaction.user}</td>
             <td>{transaction.createdAt}</td>
             <td>

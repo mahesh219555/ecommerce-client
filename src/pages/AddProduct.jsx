@@ -67,7 +67,7 @@ const AddProduct = () => {
       />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-      <Button type="Submit" variant="light" size="sm" onClick={handleSubmit}>Add Product</Button>
+        <Button type="Submit" variant="light" size="sm" onClick={handleSubmit}>Add Product</Button>
       </div>
     </>
       :
