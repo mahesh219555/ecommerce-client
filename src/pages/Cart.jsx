@@ -16,7 +16,12 @@ const Cart = () => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
-    setTransaction({ user: user._id, cart: cartItems, total: cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0) })
+    setTransaction({ 
+      user: user._id, 
+      cart: cartItems, 
+      total: cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0) ,
+      completed: true
+    })
     // eslint-disable-next-line
   }, [cart]);
 

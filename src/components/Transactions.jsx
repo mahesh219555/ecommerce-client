@@ -14,7 +14,6 @@ const Transactions = () => {
         <thead>
           <tr>
             <th>Order ID</th>
-            <th>Products Ordered</th>
             <th>Total</th>
             <th>Purchased On</th>
           </tr>
@@ -28,7 +27,6 @@ const Transactions = () => {
               return (
               <tr key={transaction._id}>
                 <td>{transaction._id}</td>
-                <td>macbook</td>
                 <td>${transaction.total}</td>
                 <td>{transaction.createdAt}</td>
               </tr>
