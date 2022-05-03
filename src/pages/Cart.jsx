@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Title, Text, Table, ScrollArea, Button, Image } from '@mantine/core';
+import { Title, NativeSelect, Table, ScrollArea, Button, Image } from '@mantine/core';
 import { CartState } from '../context/cartContext/CartContext';
 
 const Cart = () => {
@@ -42,7 +42,22 @@ const Cart = () => {
                 </td>
                 <td>{product.title}</td>
                 <td>${product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                <td>{product.qty}</td>
+                <td>
+                <NativeSelect
+                  data={['1', '2', '3', '4', '5']}
+                  value={product.qty}
+                  onChange={(e) =>
+                    dispatch({
+                      type: "CHANGE_CART_QTY",
+                      payload: {
+                        id: product.id,
+                        qty: e.target.value,
+                      },
+                    })
+                  }
+                  required
+                />
+                </td>
                 <td>
                   <Button type="Submit" variant="light" color="red" size="sm" onClick={() => dispatch({ type: "REMOVE_FROM_CART", payload: product, })}>Remove</Button>
                 </td>
@@ -53,9 +68,8 @@ const Cart = () => {
         </tbody>
       </Table>
       </ScrollArea>
-      <Text size="lg" style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Text>
+      <Title order={2} style={{ marginTop: '20px', marginBottom: '20px', }}>Total ({cart.length}) items: ${total}</Title>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button type="Submit" variant="light" size="sm" color="red" style={{ marginRight: '5px' }} onClick={() => dispatch({ type: "EMPTY_CART", payload: null, })}>Empty Cart</Button>
         <Button type="Submit" variant="light" size="sm" color="green">Proceed to Checkout</Button>
       </div>
     </>
