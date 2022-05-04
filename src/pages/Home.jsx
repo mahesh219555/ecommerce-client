@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { Title, Text, Button } from '@mantine/core';
 import ProductsHome from '../components/ProductsHome';
@@ -7,6 +8,10 @@ const Home = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Home | Apple E-Commerce</title>
+      <meta name='description' content='Home' />
+    </Helmet>
     <Title order={2} style={{ marginBottom: '10px' }}>Apple E-Commerce</Title>
     <Text size="md">The Best Prices.</Text>
     

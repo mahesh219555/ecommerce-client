@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import { Title, NativeSelect, Table, ScrollArea, Button, Image } from '@mantine/core';
 import { CartState } from '../context/cartContext/CartContext';
 import { createTransaction } from '../context/transactionContext/apiCalls';
@@ -38,6 +39,10 @@ const Cart = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Shopping Cart | Apple E-Commerce</title>
+      <meta name='description' content='Shopping Cart' />
+    </Helmet>
     {cart.length <= 0 ?  
     <Title order={2} style={{ marginBottom: '10px' }}>Your shopping cart is empty</Title>
     :

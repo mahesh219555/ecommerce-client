@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from "react-helmet";
 import { TextInput, Table, ScrollArea, Button } from '@mantine/core';
 import { TransactionContext } from '../../context/transactionContext/TransactionContext';
 import { deleteTransaction, getTransactions } from '../../context/transactionContext/apiCalls';
@@ -20,6 +21,10 @@ const TransactionsList = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Manage Transactions | Apple E-Commerce</title>
+      <meta name='description' content='Admin Transactions' />
+    </Helmet>
     <TextInput
       size="md"
       placeholder="Search by User ID"

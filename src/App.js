@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from "react-helmet";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -20,6 +21,14 @@ function App() {
   return (
     <>
     <BrowserRouter>
+    <Helmet>
+      <title>Apple E-Commerce</title>
+      <meta name='title' content='Apple E-Commerce' />
+      <meta name='description' content='An E-Commerce web app built with React.' />
+      <meta property="og:title" content='Apple E-Commerce' />
+      <meta property="og:description" content='An E-Commerce web app built with React.' />
+      <meta property="og:image" content='%PUBLIC_URL%/preview.png' />
+    </Helmet>
     <Container>
     <NavBar />
     <Routes>

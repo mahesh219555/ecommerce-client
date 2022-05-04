@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { TextInput, Button, Title } from '@mantine/core';
@@ -31,6 +32,10 @@ const Register = () => {
 
   return (
   <>
+  <Helmet>
+    <title>Register | Apple E-Commerce</title>
+    <meta name='description' content='Register' />
+  </Helmet>
   <Title order={1} style={{ marginBottom: '10px' }}>Register Account</Title>
   <TextInput
   placeholder="Enter a username"

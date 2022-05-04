@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import { TextInput, Table, ScrollArea, Button, Avatar, SimpleGrid } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
 import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
@@ -21,6 +22,10 @@ const UserList = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Manage Users | Apple E-Commerce</title>
+      <meta name='description' content='Manage Users' />
+    </Helmet>
     <TextInput
       size="md"
       placeholder="Search by username"

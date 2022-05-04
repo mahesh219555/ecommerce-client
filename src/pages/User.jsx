@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
@@ -17,6 +18,10 @@ const User = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Your Account | Apple E-Commerce</title>
+      <meta name='description' content='Your Account' />
+    </Helmet>
     <div style={{ width: 100 }}>
       <Avatar src={profilePic} alt={name} radius="xl" size={60} />
     </div>

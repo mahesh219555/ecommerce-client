@@ -18,6 +18,7 @@ const Transactions = () => {
       <>
       <Title order={3} style={{ marginBottom: '10px' }}>Your Transactions</Title>
       <Text size="md">Below is a list of your purchase history</Text>
+      <Text size="md">If you recently made a purchase, log out then log back in to see your order details</Text>
       
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>

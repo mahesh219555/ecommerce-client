@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext/AuthContext';
@@ -20,6 +21,10 @@ const Login = () => {
   
   return (
   <>
+  <Helmet>
+    <title>Login | Apple E-Commerce</title>
+    <meta name='description' content='Login' />
+  </Helmet>
   <Title order={1} style={{ marginBottom: '10px' }}>Login</Title>
   <form>
     <TextInput

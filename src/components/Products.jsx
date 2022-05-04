@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react'
-import ProductCard from './ProductCard'
+import React, { useContext, useState, useEffect } from 'react';
+import { Helmet } from "react-helmet";
+import ProductCard from './ProductCard';
 import { TextInput, SimpleGrid, Title, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../context/productContext/ProductContext';
 import { getProducts } from '../context/productContext/apiCalls';
@@ -18,6 +19,10 @@ const Products = () => {
 
   return (
 	  <>
+    <Helmet>
+      <title>Products | Apple E-Commerce</title>
+      <meta name='description' content='Products' />
+    </Helmet>
     <Title order={2} style={{ marginBottom: '10px' }}>Filter Products</Title>
     <TextInput
       size="md"

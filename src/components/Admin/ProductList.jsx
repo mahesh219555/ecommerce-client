@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Helmet } from "react-helmet";
 import { TextInput, Table, ScrollArea, Button, Image, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../../context/productContext/ProductContext';
 import { deleteProduct, getProducts } from '../../context/productContext/apiCalls';
@@ -22,6 +23,10 @@ const ProductList = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Manage Products | Apple E-Commerce</title>
+      <meta name='description' content='Admin Products' />
+    </Helmet>
     <TextInput
       size="md"
       placeholder="Search by product name"

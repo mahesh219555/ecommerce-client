@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { TextInput, Textarea, Title, Button } from '@mantine/core';
 import { createProduct } from '../context/productContext/apiCalls';
@@ -22,6 +23,10 @@ const AddProduct = () => {
 
   return (
     <>
+    <Helmet>
+      <title>Add New Product | Apple E-Commerce</title>
+      <meta name='description' content='Add New Product' />
+    </Helmet>
     {
       admin ? 
       <>
