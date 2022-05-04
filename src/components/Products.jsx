@@ -1,14 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import ProductCard from './ProductCard';
-import { TextInput, SimpleGrid, Title, NativeSelect } from '@mantine/core';
+import { TextInput, SimpleGrid, Title, NativeSelect, Loader } from '@mantine/core';
 import { ProductContext } from '../context/productContext/ProductContext';
 import { getProducts } from '../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 import { Pagination } from '@mui/material';
 
 const Products = () => {
-  const { products, dispatch } = useContext(ProductContext);
+  const { products, isFetching, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
@@ -40,6 +40,10 @@ const Products = () => {
       placeholder="Select one"
       label="Filter products by category"
     />
+    {isFetching ?
+    <Loader color="violet" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+    :
+    <>
     <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },
@@ -86,6 +90,8 @@ const Products = () => {
       }}
       style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
     />
+    </>
+    }
 	  </>
   )
 }
