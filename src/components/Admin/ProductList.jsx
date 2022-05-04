@@ -4,11 +4,12 @@ import { ProductContext } from '../../context/productContext/ProductContext';
 import { deleteProduct, getProducts } from '../../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 import formatDistance from 'date-fns/formatDistance';
+import { Pagination } from '@mui/material';
 
 const ProductList = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
-  const [price, setPrice] = useState('');
+  const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const ProductList = () => {
         <tbody>
         {
         products
+        .slice((page - 1) * 10, (page - 1) * 10 + 10)
         ?.filter((product) => {
           if(category === '' && search === ''){
             return true
@@ -65,6 +67,7 @@ const ProductList = () => {
           if(search !== '' && product.title.toLowerCase().includes(search.toLowerCase())){
             return true
           }
+          return false
         })
         .map((product) => {
           const dateStr = product.createdAt;
@@ -96,6 +99,14 @@ const ProductList = () => {
         </tbody>
       </Table>
     </ScrollArea>
+    <Pagination
+      count={(products?.length / 10).toFixed(0)}
+      onChange={(_, value) => {
+        setPage(value);
+        window.scroll(0, 450);
+      }}
+      style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
+    />
     </>
   )
 }

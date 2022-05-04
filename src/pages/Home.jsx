@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <>
-    <Title order={3} style={{ marginBottom: '10px' }}>Apple E-Commerce</Title>
+    <Title order={2} style={{ marginBottom: '10px' }}>Apple E-Commerce</Title>
     <Text size="md">The Best Prices.</Text>
     
     <Title order={3} style={{ marginTop: '10px' }}>Recent Products Added</Title>
@@ -20,4 +20,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

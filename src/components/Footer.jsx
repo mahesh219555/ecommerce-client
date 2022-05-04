@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, Breadcrumbs, Anchor } from '@mantine/core';
-import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (

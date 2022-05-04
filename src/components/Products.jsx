@@ -4,10 +4,12 @@ import { TextInput, SimpleGrid, Title, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../context/productContext/ProductContext';
 import { getProducts } from '../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
+import { Pagination } from '@mui/material';
 
 const Products = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
   
   useEffect(() => {
@@ -47,6 +49,7 @@ const Products = () => {
     ]}>
       {
         products
+        .slice((page - 1) * 12, (page - 1) * 12 + 12)
         ?.filter((product) => {
           if(category === '' && search === ''){
             return true
@@ -79,6 +82,14 @@ const Products = () => {
         })
       }
     </SimpleGrid>
+    <Pagination
+      count={(products?.length / 12).toFixed(0)}
+      onChange={(_, value) => {
+        setPage(value);
+        window.scroll(0, 450);
+      }}
+      style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
+    />
 	  </>
   )
 }
