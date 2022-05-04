@@ -40,13 +40,6 @@ const Products = () => {
       placeholder="Select one"
       label="Filter products by category"
     />
-    <Title order={2} style={{marginBottom: '10px', marginTop: '10px' }}>Sort Products By</Title>
-    <NativeSelect
-      size="md"
-      data={['Lowest Price', 'Highest Price']}
-      placeholder="Select one"
-      label="Select a price range to sort by"
-    />
     <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },
@@ -70,8 +63,6 @@ const Products = () => {
           }
           return false
         })
-        // .sort((product) => {
-        // })
         .map((product) => {
           return (
             <ProductCard
