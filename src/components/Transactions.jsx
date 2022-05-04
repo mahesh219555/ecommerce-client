@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Title, Text, Table, ScrollArea } from '@mantine/core';
+import { Pagination } from '@mui/material';
 
 const Transactions = () => {
   const transactions = JSON.parse(localStorage.getItem('user')).transactionHistory;
+  const [page, setPage] = useState(1);
 
   return (
     <>
@@ -31,6 +33,7 @@ const Transactions = () => {
             {
               transactions
               .reverse()
+              .slice((page - 1) * 10, (page - 1) * 10 + 10)
               .map((transaction) => {
                 return (
                   <tr key={transaction._id}>
@@ -44,10 +47,18 @@ const Transactions = () => {
           </tbody>
         </Table>
       </ScrollArea>
+      <Pagination
+      count={(transactions?.length / 10).toFixed(0)}
+      onChange={(_, value) => {
+        setPage(value);
+        window.scroll(0, 450);
+      }}
+      style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
+    />
       </>
     }
     </>
   )
 }
 
-export default Transactions
+export default Transactions;
