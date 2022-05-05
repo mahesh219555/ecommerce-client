@@ -44,7 +44,7 @@ const ProductReducer = (state, action) => {
       };
     case "UPDATE_PRODUCT_SUCCESS":
       return {
-        products: state.products.map(product => product._id === action.payload._id && action.payload),
+        products: action.payload,
         isFetching: false,
         error: false
       };

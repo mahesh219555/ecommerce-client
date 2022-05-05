@@ -44,11 +44,12 @@ export const createProduct = async (product, dispatch) => {
 export const updateProduct = async (product, dispatch) => {
   dispatch(updateProductStart())
   try {
-    const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/products/update`, product, {
+    const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/products/update/${product.id}`, product, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
     })
+    console.log(res.data)
     dispatch(updateProductSuccess(res.data))
   } catch (error) {
     dispatch(updateProductFailure())

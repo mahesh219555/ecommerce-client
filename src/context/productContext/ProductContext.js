@@ -11,7 +11,6 @@ export const ProductContext = createContext(INITIAL_STATE);
 
 export const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ProductReducer, INITIAL_STATE);
-
   return (
     <ProductContext.Provider
       value={{ 

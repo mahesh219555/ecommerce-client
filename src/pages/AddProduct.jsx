@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import { TextInput, Textarea, Title, Button } from '@mantine/core';
+import { TextInput, Textarea, Title, Button, NativeSelect } from '@mantine/core';
 import { createProduct } from '../context/productContext/apiCalls';
 import { ProductContext } from '../context/productContext/ProductContext';
 
@@ -54,19 +54,20 @@ const AddProduct = () => {
       required
       onChange={handleChange}
       />
-      <TextInput
-      placeholder="Category"
-      label="Category"
-      id="category"
+      <NativeSelect
       size="md"
-      required
+      id='category'
+      data={['Accessories', 'Desktops', 'Laptops', 'iPhones', 'iPads', 'Watches']}
       onChange={handleChange}
+      placeholder="Select one"
+      label="Choose category"
       />
       <TextInput
       placeholder="0"
       label="Price"
       id="price"
       size="md"
+      type='number'
       required
       onChange={handleChange}
       />

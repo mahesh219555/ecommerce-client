@@ -35,8 +35,8 @@ function App() {
       <Route path='/' element={user ? <Home /> : <Login />} />
       <Route path='/products' element={user ? <ProductsPage /> : <Login />} />
       <Route path='/account' element={user ? <User /> : <Login />} />
-      <Route path='/order-accepted' element={user ? <TransactionSuccess /> : <Login />} />
       <Route path='/account/add-product' element={user ? <AddProduct /> : <Home />} />
+      <Route path='/order-accepted' element={user ? <TransactionSuccess /> : <Login />} />
       <Route path='/login' element={user ? <User /> : <Login />} />
       <Route path='/register' element={user ? <Home /> : <Register />} />
       <Route path='/cart' element={user ? <Cart /> : <Login />} />

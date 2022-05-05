@@ -1,16 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
-import { TextInput, Table, ScrollArea, Button, Avatar, SimpleGrid } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Avatar } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
 import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 import formatDistance from 'date-fns/formatDistance';
 import { Pagination } from '@mui/material';
+import EditUser from './EditUser';
 
 const UserList = () => {
   const { users, dispatch } = useContext(UserContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState('');
 
   useEffect(() => {
     getUsers(dispatch);
@@ -18,6 +21,12 @@ const UserList = () => {
 
   const handleDelete = (id) => {
     deleteUser(id, dispatch);
+  }
+
+  const showEdit = (id) => {
+    setEdit(true);
+    setEditId(id);
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -34,7 +43,7 @@ const UserList = () => {
       style={{ marginTop: '20px', marginBottom: '10px' }}
       icon={<Search size={24} color='black' />}
     />
-    <SimpleGrid cols={2}>
+    {/* <SimpleGrid cols={2}>
       <TextInput
         size="md"
         placeholder="Search by First Name"
@@ -51,7 +60,17 @@ const UserList = () => {
         style={{ marginTop: '20px', marginBottom: '20px' }}
         icon={<Search size={24} color='black' />}
       />
-    </SimpleGrid>
+    </SimpleGrid> */}
+
+    {edit ? 
+    <EditUser
+    editId={editId}
+    setEdit={setEdit}
+    />
+    :
+    <></>
+    }
+
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -92,7 +111,7 @@ const UserList = () => {
             <td>{user.username}</td>
             <td>{user.firstName} {user.lastName}</td>
             <td>
-              <Button type="Submit" variant="light" color="orange" size="sm" style={{ marginRight: '10px' }}>Edit</Button>
+              <Button type="Submit" variant="light" color="orange" size="sm" style={{ marginRight: '10px' }} onClick={() => showEdit(user._id)}>Edit</Button>
               <Button type="Submit" variant="light" color="red" size="sm" onClick={() => handleDelete(user._id)}>Delete</Button>
             </td>
           </tr>

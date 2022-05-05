@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { 
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
@@ -20,6 +23,22 @@ export const getUsers = async (dispatch) => {
     dispatch(getUsersSuccess(res.data))
   } catch (error) {
     dispatch(getUsersFailure())
+  }
+}
+
+// UPDATE USER
+export const updateUser = async (user, dispatch) => {
+  dispatch(updateUserStart())
+  try {
+    const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/users/update/${user.id}`, user, {
+      headers: {
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+      }
+    })
+    console.log(res.data)
+    dispatch(updateUserSuccess(res.data))
+  } catch (error) {
+    dispatch(updateUserFailure())
   }
 }
 

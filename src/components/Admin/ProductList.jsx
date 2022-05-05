@@ -1,17 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router-dom';
 import { TextInput, Table, ScrollArea, Button, Image, NativeSelect } from '@mantine/core';
 import { ProductContext } from '../../context/productContext/ProductContext';
 import { deleteProduct, getProducts } from '../../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
-import formatDistance from 'date-fns/formatDistance';
 import { Pagination } from '@mui/material';
+import EditProduct from './EditProduct';
 
 const ProductList = () => {
   const { products, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState('');
 
   useEffect(() => {
     getProducts(dispatch);
@@ -21,12 +24,21 @@ const ProductList = () => {
     deleteProduct(id, dispatch);
   }
 
+  const showEdit = (id) => {
+    setEdit(true);
+    setEditId(id);
+    window.scrollTo(0, 0);
+  }
+
   return (
     <>
     <Helmet>
       <title>Manage Products | Apple E-Commerce</title>
       <meta name='description' content='Admin Products' />
     </Helmet>
+    <Link to='/account/add-product'>
+      <Button type="Submit" variant="light" color="green" size="sm">Add New Product</Button>
+    </Link>
     <TextInput
       size="md"
       placeholder="Search by product name"
@@ -44,6 +56,16 @@ const ProductList = () => {
       label="Filter products by category"
       style={{ marginBottom: '10px' }}
     />
+
+    {edit ? 
+    <EditProduct
+    editId={editId}
+    setEdit={setEdit}
+    />
+    :
+    <></>
+    }
+
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -75,11 +97,6 @@ const ProductList = () => {
           return false
         })
         .map((product) => {
-          const dateStr = product.createdAt;
-          const str = formatDistance(
-            new Date(dateStr),
-            new Date()
-          );
           return (
             <tr key={product._id}>
             <td>
@@ -90,11 +107,11 @@ const ProductList = () => {
               src={product.image}
               />
             </td>
-            <td>{str} ago</td>
+            <td>{product.createdAt}</td>
             <td>{product.title}</td>
             <td>{product.category}</td>
             <td>
-              <Button type="Submit" variant="light" color="orange" size="sm" style={{ marginRight: '10px' }}>Edit</Button>
+              <Button type="Submit" variant="light" color="orange" size="sm" style={{ marginRight: '10px' }} onClick={() => showEdit(product._id)}>Edit</Button>
               <Button type="Submit" variant="light" color="red" size="sm" onClick={() => handleDelete(product._id)}>Delete</Button>
             </td>
           </tr>
