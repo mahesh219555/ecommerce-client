@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
-import { TextInput, Table, ScrollArea, Button, Avatar } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Avatar, Loader } from '@mantine/core';
 import { UserContext } from '../../context/userContext/UserContext';
 import { deleteUser, getUsers } from '../../context/userContext/apiCalls';
 import { Search } from 'tabler-icons-react';
@@ -9,7 +9,7 @@ import { Pagination } from '@mui/material';
 import EditUser from './EditUser';
 
 const UserList = () => {
-  const { users, dispatch } = useContext(UserContext);
+  const { users, isFetching, dispatch } = useContext(UserContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [edit, setEdit] = useState(false);
@@ -43,24 +43,6 @@ const UserList = () => {
       style={{ marginTop: '20px', marginBottom: '10px' }}
       icon={<Search size={24} color='black' />}
     />
-    {/* <SimpleGrid cols={2}>
-      <TextInput
-        size="md"
-        placeholder="Search by First Name"
-        onChange={(e) => setSearch(e.target.value)}
-        rightSectionWidth={42}
-        style={{ marginTop: '20px', marginBottom: '20px' }}
-        icon={<Search size={24} color='black' />}
-      />
-      <TextInput
-        size="md"
-        placeholder="Search by Last Name"
-        onChange={(e) => setSearch(e.target.value)}
-        rightSectionWidth={42}
-        style={{ marginTop: '20px', marginBottom: '20px' }}
-        icon={<Search size={24} color='black' />}
-      />
-    </SimpleGrid> */}
 
     {edit ? 
     <EditUser
@@ -71,6 +53,10 @@ const UserList = () => {
     <></>
     }
 
+    {isFetching ?
+    <Loader color="violet" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+    :
+    <>
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -129,6 +115,8 @@ const UserList = () => {
       }}
       style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
     />
+    </>
+    }
     </>
   )
 }

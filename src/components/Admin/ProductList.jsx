@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
-import { TextInput, Table, ScrollArea, Button, Image, NativeSelect } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Image, NativeSelect, Loader } from '@mantine/core';
 import { ProductContext } from '../../context/productContext/ProductContext';
 import { deleteProduct, getProducts } from '../../context/productContext/apiCalls';
 import { Search } from 'tabler-icons-react';
@@ -9,7 +9,7 @@ import { Pagination } from '@mui/material';
 import EditProduct from './EditProduct';
 
 const ProductList = () => {
-  const { products, dispatch } = useContext(ProductContext);
+  const { products, isFetching, dispatch } = useContext(ProductContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('');
@@ -66,6 +66,10 @@ const ProductList = () => {
     <></>
     }
 
+    {isFetching ?
+    <Loader color="violet" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+    :
+    <>
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -129,6 +133,8 @@ const ProductList = () => {
       }}
       style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
     />
+    </>
+    }
     </>
   )
 }

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from "react-helmet";
-import { TextInput, Table, ScrollArea, Button } from '@mantine/core';
+import { TextInput, Table, ScrollArea, Button, Loader } from '@mantine/core';
 import { TransactionContext } from '../../context/transactionContext/TransactionContext';
 import { deleteTransaction, getTransactions } from '../../context/transactionContext/apiCalls';
 import { Search } from 'tabler-icons-react';
 import { Pagination } from '@mui/material';
 
 const TransactionsList = () => {
-  const { transactions, dispatch } = useContext(TransactionContext);
+  const { transactions, isFetching, dispatch } = useContext(TransactionContext);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
 
@@ -33,6 +33,10 @@ const TransactionsList = () => {
       style={{ marginTop: '20px', marginBottom: '20px' }}
       icon={<Search size={24} color='black' />}
     />
+    {isFetching ?
+    <Loader color="violet" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+    :
+    <>
     <ScrollArea>
       <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
         <thead>
@@ -79,6 +83,8 @@ const TransactionsList = () => {
       }}
       style={{ padding: 20, width: '100%', display: 'flex', justifyContent: 'center' }}
     />
+    </>
+    }
     </>
   )
 }

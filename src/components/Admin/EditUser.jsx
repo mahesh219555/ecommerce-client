@@ -16,14 +16,16 @@ const EditProduct = ({ editId, setEdit }) => {
   const [isAdmin, setisAdmin] = useState(false);
   
   useEffect(() => {
-    const getProductData = async () => {
+    const getUserData = async () => {
       const response = await axios.get(`https://tranquil-brook-13044.herokuapp.com/api/users/find/${editId}`);
       const data = response.data.payload;
       setEmail(data.email);
       setFirstName(data.firstName);
       setLastName(data.lastName);
+      setProfilePic(data.profilePic);
+      setisAdmin(data.isAdmin);
     }
-    getProductData();
+    getUserData();
   }, [editId]);
 
   const handleUpdate = () => {
