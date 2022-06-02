@@ -24,7 +24,7 @@ const User = () => {
     <div style={{ width: 100 }}>
       <Avatar src={profilePic} alt={name} radius="xl" size={60} />
     </div>
-    <Title order={2} style={{ marginBottom: '10px', marginTop: '10px' }}>Welcome to your account, {name} 🤑</Title>
+    <Title order={2} style={{ marginBottom: '10px', marginTop: '10px' }}>Welcome to your account, {name}</Title>
     {/* <Button type="Submit" variant="light" color="orange" size="sm" style={{ marginBottom: '20px', marginRight: '10px' }}>Edit Account</Button> */}
     <Button type="Submit" variant="light" size="sm" onClick={() => dispatch(logout())} disabled={isFetching} style={{ marginBottom: '20px' }}>Logout</Button>
     {
