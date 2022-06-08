@@ -32,7 +32,7 @@ function App() {
     <Container>
     <NavBar />
     <Routes>
-      <Route path='/' element={user ? <Home /> : <Login />} />
+      <Route path='/' element={<Home />} />
       <Route path='/products' element={user ? <ProductsPage /> : <Login />} />
       <Route path='/account' element={user ? <User /> : <Login />} />
       <Route path='/account/add-product' element={user ? <AddProduct /> : <Home />} />
