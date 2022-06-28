@@ -23,7 +23,7 @@ const Register = () => {
       password: password
     }
     try {
-      await axios.post('https://tranquil-brook-13044.herokuapp.com/api/auth/register', newBody);
+      await axios.post('https://digitabay.herokuapp.com/', newBody);
       navigate('/login');
     } catch (error) {
       console.log('Error')
