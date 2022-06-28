@@ -15,7 +15,7 @@ import {
 export const getUsers = async (dispatch) => {
   dispatch(getUsersStart())
   try {
-    const res = await axios.get('https://tranquil-brook-13044.herokuapp.com/api/users', {
+    const res = await axios.get('https://digitabay.herokuapp.com/', {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -30,7 +30,7 @@ export const getUsers = async (dispatch) => {
 export const updateUser = async (user, dispatch) => {
   dispatch(updateUserStart())
   try {
-    const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/users/update/${user.id}`, user, {
+    const res = await axios.put('https://digitabay.herokuapp.com/`, user, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -46,7 +46,7 @@ export const updateUser = async (user, dispatch) => {
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart())
   try {
-    await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/users/delete/${id}`, {
+    await axios.delete(`https://digitabay.herokuapp.com/`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
