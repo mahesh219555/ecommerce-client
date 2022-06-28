@@ -15,7 +15,7 @@ import {
 export const getTransactions = async (dispatch) => {
   dispatch(getTransactionsStart())
   try {
-    const res = await axios.get('https://tranquil-brook-13044.herokuapp.com/api/transactions', {
+    const res = await axios.get('https://digitabay.herokuapp.com/', {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -30,7 +30,7 @@ export const getTransactions = async (dispatch) => {
 export const createTransaction = async (transaction, dispatch) => {
   dispatch(createTransactionStart())
   try {
-    const res = await axios.post(`https://tranquil-brook-13044.herokuapp.com/api/transactions/checkout`, transaction, {
+    const res = await axios.post(`https://digitabay.herokuapp.com/`, transaction, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -45,7 +45,7 @@ export const createTransaction = async (transaction, dispatch) => {
 export const deleteTransaction = async (id, dispatch) => {
   dispatch(deleteTransactionStart())
   try {
-    await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/transactions/delete/${id}`, {
+    await axios.delete(`https://digitabay.herokuapp.com/`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
