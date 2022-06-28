@@ -17,7 +17,7 @@ const EditProduct = ({ editId, setEdit }) => {
   
   useEffect(() => {
     const getUserData = async () => {
-      const response = await axios.get(`https://tranquil-brook-13044.herokuapp.com/api/users/find/${editId}`);
+      const response = await axios.get(`https://digitabay.herokuapp.com/`);
       const data = response.data.info;
       setEmail(data.email);
       setFirstName(data.firstName);
