@@ -18,7 +18,7 @@ import {
 export const getProducts = async (dispatch) => {
   dispatch(getProductsStart())
   try {
-    const res = await axios.get('https://tranquil-brook-13044.herokuapp.com/api/products')
+    const res = await axios.get('https://digitabay.herokuapp.com/')
     dispatch(getProductsSuccess(res.data))
   } catch (error) {
     dispatch(getProductsFailure())
@@ -29,7 +29,7 @@ export const getProducts = async (dispatch) => {
 export const createProduct = async (product, dispatch) => {
   dispatch(createProductStart())
   try {
-    const res = await axios.post(`https://tranquil-brook-13044.herokuapp.com/api/products/create`, product, {
+    const res = await axios.post(`https://digitabay.herokuapp.com/`, product, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -44,7 +44,7 @@ export const createProduct = async (product, dispatch) => {
 export const updateProduct = async (product, dispatch) => {
   dispatch(updateProductStart())
   try {
-    const res = await axios.put(`https://tranquil-brook-13044.herokuapp.com/api/products/update/${product.id}`, product, {
+    const res = await axios.put(`https://digitabay.herokuapp.com/`, product, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -60,7 +60,7 @@ export const updateProduct = async (product, dispatch) => {
 export const deleteProduct = async (id, dispatch) => {
   dispatch(deleteProductStart())
   try {
-    await axios.delete(`https://tranquil-brook-13044.herokuapp.com/api/products/delete/${id}`, {
+    await axios.delete(`https://digitabay.herokuapp.com/`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
