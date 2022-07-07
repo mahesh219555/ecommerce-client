@@ -30,7 +30,7 @@ export const getUsers = async (dispatch) => {
 export const updateUser = async (user, dispatch) => {
   dispatch(updateUserStart())
   try {
-    const res = await axios.put('https://digitabay.herokuapp.com/`, user, {
+    const res = await axios.put('https://digitabay.herokuapp.com/`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
