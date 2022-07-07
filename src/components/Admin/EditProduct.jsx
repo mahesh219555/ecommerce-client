@@ -16,7 +16,7 @@ const EditProduct = ({ editId, setEdit }) => {
   
   useEffect(() => {
     const getProductData = async () => {
-      const response = await axios.get(`https://digitabay.herokuapp.com/`);
+      const response = await axios.get(`https://tranquil-brook-13044.herokuapp.com/api/products/find/${editId}`);
       const data = response.data.payload;
       setImage(data.image);
       setTitle(data.title);
